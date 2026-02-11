@@ -163,7 +163,8 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, setIsOpen }) => {
         <div className="h-20 flex-none flex items-center px-6 border-b border-gray-100">
            {/* Logo Area */}
            <div className="flex items-center gap-2 cursor-pointer" onClick={() => setActiveTab('dashboard')}>
-              <div className="text-xl font-bold text-gray-900 tracking-tight"><span className="text-rose-500">Kernel</span> Academy</div>
+              <img src="image_474c5f.jpg" alt="Kernel Academy" className="h-8 object-contain" onError={(e) => {e.target.style.display='none'; e.target.nextSibling.style.display='block'}}/>
+              <span className="hidden text-xl font-bold text-gray-900 tracking-tight"><span className="text-rose-500">Kernel</span> Academy</span>
            </div>
         </div>
 
@@ -268,6 +269,8 @@ const Header = ({ title, onMenuClick }) => (
     </div>
   </header>
 );
+
+// ... existing code for CharacterCard, SuccessVisionBoard, StatsCard ...
 
 const CharacterCard = () => (
   <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 relative overflow-hidden group">
@@ -492,14 +495,24 @@ const DashboardView = () => {
   );
 };
 
+// ... existing code for ClassroomView, JobMatchingView ...
 const ClassroomView = () => {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-140px)]">
             {/* Left: Video Player */}
             <div className="lg:col-span-2 flex flex-col gap-4">
                 <div className="bg-black rounded-2xl aspect-video flex items-center justify-center relative overflow-hidden group">
-                    <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                        <PlayCircle size={64} className="text-white opacity-80 group-hover:opacity-100 transition-opacity cursor-pointer" />
+                    <img src="/api/placeholder/800/450" alt="Video Placeholder" className="w-full h-full object-cover opacity-60" />
+                    <button className="absolute inset-0 flex items-center justify-center">
+                        <PlayCircle size={64} className="text-white opacity-80 group-hover:opacity-100 transition-opacity" />
+                    </button>
+                    {/* In-video Quiz Overlay Mockup */}
+                    <div className="absolute bottom-8 left-8 right-8 bg-black/80 backdrop-blur-sm p-4 rounded-xl border border-white/10 hidden">
+                        <p className="text-white font-medium mb-2">Q. State가 변경되면 컴포넌트는 어떻게 되나요?</p>
+                        <div className="flex gap-2">
+                             <button className="flex-1 bg-gray-700 hover:bg-rose-600 text-white text-xs py-2 rounded">재렌더링 된다</button>
+                             <button className="flex-1 bg-gray-700 hover:bg-rose-600 text-white text-xs py-2 rounded">삭제된다</button>
+                        </div>
                     </div>
                 </div>
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
@@ -637,33 +650,3 @@ const App = () => {
 };
 
 export default App;
-```
-
----
-
-## 📄 **.gitignore**
-```
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
